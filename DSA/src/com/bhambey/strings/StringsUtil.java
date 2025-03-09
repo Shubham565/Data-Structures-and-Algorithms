@@ -66,18 +66,18 @@ public class StringsUtil {
 		}
 		return "";
 	}
-	
+
 	public static String longestCommonPrefix(String[] arr) {
 
 		if (arr.length == 0)
 			return "";
-		
+
 		String prefix = arr[0];
 		for (int i = 1; i < arr.length; i++) {
 			while (arr[i].indexOf(prefix) != 0) {
 				prefix = prefix.substring(0, prefix.length() - 1);
 				if (prefix.isEmpty())
-					return ""; 
+					return "";
 			}
 		}
 		return prefix;
@@ -117,8 +117,7 @@ public class StringsUtil {
 	public static String sortCharactersByFrequency(String s) {
 
 		// Time Complexity: O(nlogn) - Using arrays only
-		
-		
+
 		int[] freq = new int[128];
 
 		for (char c : s.toCharArray()) {
@@ -161,7 +160,6 @@ public class StringsUtil {
 		return Math.max(maxNesting, count);
 	}
 
-	
 	public static int romanToInteger(String s) {
 
 		Map<Character, Integer> romanMap = new HashMap<>();
@@ -188,17 +186,65 @@ public class StringsUtil {
 		return total;
 	}
 
-	
-	public static String atoiStringToInteger(String s) {
-		
-		int i=0, n = s.length();
-		int result = 0;
+	public static int atoiStringToInteger(String s) {
+
+		int i = 0, n = s.length();
+		int sign = 1, result = 0;
 		int max = Integer.MAX_VALUE, min = Integer.MIN_VALUE;
-		
-		return null;
-		
+
+		while (i < n && s.charAt(i) == ' ') {
+			i++;
+		}
+
+		if (i < n && (s.charAt(i) == '-' || s.charAt(i) == '+')) {
+			sign = (s.charAt(i) == '-') ? -1 : 1;
+			i++;
+		}
+
+		while (i < n && Character.isDigit(s.charAt(i))) {
+			int digit = s.charAt(i) - '0';
+
+			if (result > (max - digit) / 10) {
+				return sign == 1 ? max : min;
+			}
+
+			result = result * 10 + digit;
+			i++;
+		}
+
+		return result * sign;
+
 	}
 
-	
-	
+	private static int countAtMostK(String s, int k) {
+		if (k == 0)
+			return 0;
+
+		int count = 0;
+		HashMap<Character, Integer> freq = new HashMap<>();
+		int left = 0;
+
+		for (int right = 0; right < s.length(); right++) {
+			char c = s.charAt(right);
+			freq.put(c, freq.getOrDefault(c, 0) + 1);
+
+			while (freq.size() > k) {
+				char leftChar = s.charAt(left);
+				freq.put(leftChar, freq.get(leftChar) - 1);
+				if (freq.get(leftChar) == 0) {
+					freq.remove(leftChar);
+				}
+				left++;
+			}
+
+			count += (right - left + 1);
+		}
+
+		return count;
+	}
+
+	public static int substringWithKDistinctChars(String s, int k) {
+		return countAtMostK(s, k) - countAtMostK(s, k - 1);
+	}
+
 }
