@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.bhambey.concurrency&apos; to &apos;com.bhambey.multithreading&apos;&#x0A;- Original project: &apos;Educative&apos;&#x0A;- Original element: &apos;Educative/src/com.bhambey.concurrency&apos;&#x0A;- Renamed element: &apos;Educative/src/com.bhambey.multithreading&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.bhambey.concurrency&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.bhambey.concurrency" name="com.bhambey.multithreading" qualified="false" references="true" stamp="1740769085048" textual="false" version="1.0"/>
+</session>

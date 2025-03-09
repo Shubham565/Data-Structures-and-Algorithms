@@ -1,0 +1,1133 @@
+package com.bhambey.binarySearch;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+public class BinarySearchUtil {
+
+	public static int binarySearchIterative(int[] arr, int target) {
+
+		/*
+		 * In the algorithm, in every step, we are basically dividing the search space
+		 * into 2 equal halves. This is actually equivalent to dividing the size of the
+		 * array by 2, every time. After a certain number of divisions, the size will
+		 * reduce to such an extent that we will not be able to divide that anymore and
+		 * the process will stop. The number of total divisions will be equal to the
+		 * time complexity.
+		 * 
+		 * Let’s derive the number of divisions mathematically,
+		 * 
+		 * If a number n can be divided by 2 for x times: 
+		 * 2^x = n 
+		 * Therefore, x = logn
+		 * 
+		 * (base is 2) So the overall time complexity is O(logN), where N = size of the
+		 * given array.
+		 */
+
+		int n = arr.length;
+		int low = 0;
+		int high = n - 1;
+
+		while (low <= high) {
+			int mid = (low + high) / 2;
+			if (arr[mid] == target)
+				return mid;
+			else if (arr[mid] < target)
+				low = mid + 1;
+			else
+				high = mid - 1;
+
+		}
+
+		return -1;
+	}
+	
+	private static int binarySearchRecursiveHelper(int[] arr, int low, int high, int target) {
+
+		if (low < high)
+			return -1;
+
+		int mid = (low + high) / 2;
+
+		if (arr[mid] == target)
+			return mid;
+		else if (arr[mid] < target)
+			binarySearchRecursiveHelper(arr, mid + 1, high, target);
+
+		return binarySearchRecursiveHelper(arr, low, mid - 1, target);
+	}
+
+	public static int binarySearchRecursive(int[] arr, int target) {
+		return binarySearchRecursiveHelper(arr, 0, arr.length - 1, target);
+	}
+
+	public static int implementLowerBound(int[] arr, int n, int x) {
+
+		/*
+		 * Time Complexity: O(logN), where N = size of the given array. 
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are using no extra space.
+		 */
+
+		int ans = n;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = (high + low) / 2;
+			if (arr[mid] >= x) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+
+		return ans;
+	}
+
+	public static int implementUpperBound(int[] arr, int n, int x) {
+
+		/*
+		 * Time Complexity: O(logN), where N = size of the given array. 
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are using no extra space.
+		 */
+
+		int ans = n;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = (low + high) / 2;
+			if (arr[mid] > x) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+
+		return ans;
+	}
+
+	public static int searchInsertPosition(int[] arr, int x) {
+
+		/*
+		 * Time Complexity: O(logN), where N = size of the given array.
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are using no extra space.
+		 */
+
+		int n = arr.length;
+		int low = 0, high = n - 1;
+		int ans = n;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] >= x) {
+				ans = mid;
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+
+		return ans;
+	}
+
+	private static int findFloor(int[] arr, int n, int x) {
+
+		int low = 0, high = n - 1;
+		int ans = n;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] <= x) {
+				ans = arr[mid];
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return ans;
+	}
+
+	private static int findCeil(int[] arr, int n, int x) {
+
+		int low = 0, high = n - 1;
+		int ans = n;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] >= x) {
+				ans = arr[mid];
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return ans;
+	}
+	
+	public static int[] getFloorAndCeil(int[] arr, int n, int x) {
+
+		/*
+		 * Time Complexity: O(logN), where N = size of the given array. 
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are using no extra space.
+		 */
+
+		int f = findFloor(arr, n, x);
+		int c = findCeil(arr, n, x);
+		return new int[] { f, c };
+	}
+
+	public static int lastOccurenceSortedArray(int[] arr, int target, int n) {
+
+		/*
+		 * Time Complexity: O(log n)
+		 * 
+		 * Space Complexity: O(1)
+		 */
+
+		int low = 0, high = n - 1;
+		int ans = n;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] == target) {
+				ans = mid;
+				low = mid + 1;
+			} else if (arr[mid] < target) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return ans;
+	}
+
+	private static int firstOccurence(int[] arr, int n, int x) {
+
+		int low = 0, high = n - 1;
+		int first = 0;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] == x) {
+				first = mid;
+				high = mid - 1;
+			} else if (arr[mid] > x) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+		}
+
+		return first;
+	}
+
+	private static int lastOccurence(int[] arr, int n, int x) {
+
+		int low = 0, high = n - 1;
+		int last = -1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			if (arr[mid] == x) {
+				last = mid;
+				low = mid + 1;
+			} else if (arr[mid] < x) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return last;
+	}
+
+	private static int[] firstAndLastPosition(int[] arr, int n, int x) {
+
+		int first = firstOccurence(arr, n, x);
+		if (first == -1)
+			return new int[] { -1, -1 };
+		int last = lastOccurence(arr, n, x);
+		return new int[] { first, last };
+	}
+
+	public static int countOccurencesSortedArray(int[] arr, int n, int x) {
+
+		/*
+		 * Time Complexity: O(2*logN), where N = size of the given array.
+		 * 
+		 * Reason: We are basically using the binary search algorithm twice.
+		 * 
+		 * Space Complexity: O(1) as we are using no extra space.
+		 */
+
+		int[] ans = firstAndLastPosition(arr, n, x);
+		if (ans[0] == -1)
+			return 0;
+		return (ans[1] - ans[0] + 1);
+
+	}
+
+	public static int searchInRotatedSortedArray(List<Integer> arr, int n, int k) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array. 
+		 * 
+		 * Reason: We are using binary search to search the target.
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+
+		int low = 0, high = n - 1;
+		int ans = -1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (arr.get(mid) == k) {
+				return mid;
+			}
+
+			if (arr.get(low) <= arr.get(mid)) {
+				if (arr.get(low) <= k && k <= arr.get(mid)) {
+					high = mid - 1;
+				} else {
+					low = mid + 1;
+				}
+			} else {
+				if (arr.get(mid) <= k && k <= arr.get(high)) {
+					low = mid + 1;
+				} else {
+					high = mid - 1;
+				}
+			}
+
+		}
+
+		return -1;
+	}
+
+	public static boolean searchInRotatedArrayDuplicates(int[] arr, int k) {
+
+		/*
+		 * Time Complexity: O(logN) for the best and average case. O(N/2) for the worst
+		 * case. Here, N = size of the given array.
+		 * 
+		 * Reason: In the best and average scenarios, the binary search algorithm is
+		 * primarily utilized and hence the time complexity is O(logN). However, in the
+		 * worst-case scenario, where all array elements are the same but not the target
+		 * (e.g., given array = {3, 3, 3, 3, 3, 3, 3}), we continue to reduce the search
+		 * space by adjusting the low and high pointers until they intersect. This
+		 * worst-case situation incurs a time complexity of O(N/2).
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+
+		int n = arr.length;
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (arr[mid] == k)
+				return true;
+
+			if (arr[low] == arr[mid] && arr[mid] == arr[high]) {
+				low += 1;
+				high -= 1;
+				continue;
+			}
+
+			if (arr[low] <= arr[mid]) {
+				if (arr[low] <= k && k <= arr[mid]) {
+					high = mid - 1;
+				} else {
+					low = mid + 1;
+				}
+			} else {
+				if (arr[mid] <= k && k <= arr[high]) {
+					low = mid + 1;
+				} else {
+					high = mid - 1;
+				}
+			}
+
+		}
+
+		return false;
+	}
+
+	public static int minimumInRotatedSortedArray(int[] arr) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array.
+		 * 
+		 * Reason: We are basically using binary search to find the minimum.
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+		
+		int n = arr.length;
+		int low = 0, high = n - 1;
+		int min = -1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (arr[low] <= arr[high]) {
+				min = Math.min(min, arr[low]);
+				break;
+			}
+
+			if (arr[low] < arr[mid]) {
+				min = Math.min(min, arr[low]);
+				low = mid + 1;
+			} else {
+				min = Math.min(min, arr[mid]);
+				high = mid - 1;
+			}
+
+		}
+
+		return min;
+	}
+
+	public static int findKRotation(int[] arr) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array. 
+		 * 
+		 * Reason: We are basically using binary search to find the minimum.
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+
+		int n = arr.length;
+		int low = 0, high = n - 1;
+		int ans = Integer.MAX_VALUE;
+		int index = -1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (arr[low] <= arr[high]) {
+				if (arr[low] < ans) {
+					ans = arr[low];
+					index = low;
+				}
+			}
+
+			if (arr[low] <= arr[mid]) {
+				if (arr[low] < ans) {
+					ans = arr[low];
+					index = low;
+					low = mid + 1;
+				}
+			} else {
+				if (arr[mid] < ans) {
+					index = mid;
+					ans = arr[mid];
+				}
+				high = mid - 1;
+			}
+
+		}
+
+		return index;
+	}
+
+	public static int singleNonDuplicate(List<Integer> arr) {
+
+		// One of the ways to do it is xor but has linear time complexity.
+		// We do it using Binary Search for logarithmic complextiy.
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array.
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space.
+		 */
+
+		int n = arr.size();
+
+		if (n == 1)
+			return arr.get(0);
+		else if (!arr.get(0).equals(arr.get(1))) {
+			return arr.get(0);
+		} else if (!arr.get(n - 1).equals(arr.get(n - 2))) {
+			return arr.get(n - 1);
+		}
+
+		int low = 1, high = n - 2;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (!arr.get(mid).equals(arr.get(mid - 1)) && !arr.get(mid).equals(arr.get(mid - 1))) {
+				return arr.get(mid);
+			}
+
+			if (mid % 2 == 1 && arr.get(mid).equals(arr.get(mid - 1))
+					|| (mid % 2 == 0 && arr.get(mid).equals(arr.get(mid + 1)))) {
+				low = mid + 1;
+			}
+
+			else {
+				high = mid - 1;
+			}
+
+		}
+		return -1;
+	}
+
+	public static int findPeakElement(List<Integer> arr) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array. 
+		 * 
+		 * Reason: We are basically using binary search to find the minimum.
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+
+		int n = arr.size();
+
+		if (n == 1)
+			return arr.get(0);
+		if (arr.get(0) > arr.get(1))
+			return 0;
+		if (arr.get(n - 1) > arr.get(n - 2))
+			return n - 1;
+
+		int low = 1, high = n - 2;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if ((arr.get(mid) > arr.get(mid - 1)) && (arr.get(mid) > arr.get(mid + 1))) {
+				return arr.get(mid);
+			}
+
+			if (arr.get(mid) > arr.get(mid - 1)) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return -1;
+	}
+
+	public static int findSquareRoot(int n) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array.
+		 * 
+		 * Reason: We are basically using the Binary Search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space.
+		 */
+
+		int low = 0, high = n;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			long val = mid * mid;
+
+			if (val <= (long) n) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return high;
+	}
+
+	private static int nthRootHelper(int mid, int n, int m) {
+
+		int ans = 1;
+
+		for (int i = 0; i < n; i++) {
+			ans *= mid;
+			if (ans > m)
+				return 2;
+		}
+		if (ans == m)
+			return 1;
+
+		return 0;
+	}
+
+	public static int nthRoot(int n, int m) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array.
+		 * 
+		 * Reason: We are basically using binary search to find the minimum.
+		 * 
+		 * Space Complexity: O(1) Reason: We have not used any extra data structures,
+		 * this makes space complexity, even in the worst case as O(1).
+		 */
+
+		int low = 1, high = m;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			int nthRoot = nthRootHelper(mid, n, m);
+
+			if (nthRoot == 1)
+				return mid;
+			else if (nthRoot == 0) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return -1;
+	}
+
+	private static int kokoHelper(int[] arr, int hourlyBananas) {
+
+		int totalHours = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			totalHours += Math.ceil((double) arr[i] / (double) hourlyBananas);
+		}
+
+		return totalHours;
+	}
+
+	public static int kokoEatingBananas(int[] arr, int h) {
+
+		/*
+		 * Time Complexity: O(N * log(max(a[]))), where max(a[]) is the maximum element
+		 * in the array and N = size of the array.
+		 * 
+		 * Reason: We are applying Binary search for the range [1, max(a[])], and for
+		 * every value of ‘mid’, we are traversing the entire array inside the function
+		 * named calculateTotalHours().
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+
+		int max = Integer.MIN_VALUE;
+
+		for (Integer i : arr) {
+			max = Math.max(i, max);
+		}
+
+		int low = 1, high = max;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			int ans = kokoHelper(arr, mid);
+
+			if (ans <= h) {
+				high = mid - 1;
+
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	private static boolean bouquetPossible(int[] arr, int day, int m, int k) {
+
+		int count = 0, numberOfBouquets = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] <= day) {
+				count++;
+			} else {
+				numberOfBouquets += count / k;
+				count = 0;
+			}
+		}
+
+		numberOfBouquets += count / k;
+		return numberOfBouquets >= m;
+	}
+
+	public static int minimumDaysToMakeMBouquets(int[] arr, int k, int m) {
+
+		/*
+		 * Time Complexity: O(log(max(arr[])-min(arr[])+1) * N), where {max(arr[]) ->
+		 * maximum element of the array, min(arr[]) -> minimum element of the array, N =
+		 * size of the array}.
+		 * 
+		 * Reason: We are applying binary search on our answers that are in the range of
+		 * [min(arr[]), max(arr[])]. For every possible answer ‘mid’, we will call the
+		 * possible() function. Inside the possible() function, we are traversing the
+		 * entire array, which results in O(N).
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+
+		long val = (long) m * k;
+		int n = arr.length;
+		if (val > n)
+			return -1;
+
+		int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
+
+		for (int i = 0; i < n; i++) {
+			low = Math.min(low, arr[i]);
+			high = Math.max(high, arr[i]);
+		}
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (bouquetPossible(arr, mid, m, k)) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	private static int divisorExist(int[] arr, int divisor, int limit) {
+
+		int n = arr.length;
+		int remainderTotal = 0;
+
+		for (int i = 0; i < n; i++) {
+			remainderTotal += (Math.ceil((double) arr[i] / (double) divisor));
+		}
+
+		return remainderTotal;
+	}
+
+	public static int smallestDivisorGivenAThreshold(int[] arr, int limit) {
+
+		/*
+		 * Time Complexity: O(log(max(arr[]))*N), where max(arr[]) = maximum element in
+		 * the array, N = size of the array.
+		 * 
+		 * Reason: We are applying binary search on our answers that are in the range of
+		 * [1, max(arr[])]. For every possible divisor ‘mid’, we call the sumByD()
+		 * function. Inside that function, we are traversing the entire array, which
+		 * results in O(N).
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+		
+		int n = arr.length;
+		if(n > limit) return -1;
+
+		int low = 1, high = Integer.MIN_VALUE;
+
+		for (int i = 0; i < arr.length; i++) {
+			high = Math.max(high, arr[i]);
+		}
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (divisorExist(arr, mid, limit) <= limit) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	private static int calculateDays(int[] weights, int cap) {
+
+		int load = 0;
+		int days = 1;
+
+		for (int i = 0; i < weights.length; i++) {
+			if (load + weights[i] > cap) {
+				days += 1;
+				load = weights[i];
+			} else {
+				load += weights[i];
+			}
+		}
+
+		return days;
+	}
+
+	public static int shipPackagesWithinGivenDays(int[] weights, int d) {
+
+		/*
+		 * Time Complexity: O(N * log(sum(weights[]) - max(weights[]) + 1)), where
+		 * sum(weights[]) = summation of all the weights, max(weights[]) = maximum of
+		 * all the weights, N = size of the weights array.
+		 * 
+		 * Reason: We are applying binary search on the range [max(weights[]),
+		 * sum(weights[])]. For every possible answer ‘mid’, we are calling findDays()
+		 * function. Now, inside the findDays() function, we are using a loop that runs
+		 * for N times.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+		
+		int low = Integer.MIN_VALUE, high = 0;
+
+		for (int i = 0; i < weights.length; i++) {
+			low = Math.max(low, weights[i]);
+			high += weights[i];
+		}
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (calculateDays(weights, mid) <= d) {
+				high = mid - 1;
+			} else {
+				low = mid + 1;
+			}
+
+		}
+
+		return low;
+	}
+	
+	public static int kthMissingPositiveNumber(int[] arr, int n, int k) {
+
+		/*
+		 * Time Complexity: O(logN), N = size of the given array.
+		 * 
+		 * Reason: We are using the simple binary search algorithm.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+		
+		int low = 0, high = n - 1;
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int missing = arr[mid] - (mid + 1);
+			if (missing < k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+		}
+
+		return high + 1 + k;
+	}
+
+	private static boolean cowPlacementPossible(int[] stalls, int dist, int cows) {
+
+		int lastPlaced = stalls[0];
+		int numberOfCows = 1;
+
+		for (int i = 1; i < stalls.length; i++) {
+			if (stalls[i] - lastPlaced >= dist) {
+				numberOfCows++;
+				lastPlaced = stalls[i];
+			}
+		}
+
+		if (numberOfCows >= cows) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static int aggressiveCows(int[] stalls, int k) {
+
+		/*
+		 * Time Complexity: O(NlogN) + O(N * log(max(stalls[])-min(stalls[]))), where N
+		 * = size of the array, max(stalls[]) = maximum element in stalls[] array,
+		 * min(stalls[]) = minimum element in stalls[] array.
+		 * 
+		 * Reason: O(NlogN) for sorting the array. We are applying binary search on [1,
+		 * max(stalls[])-min(stalls[])]. Inside the loop, we are calling canWePlace()
+		 * function for each distance, ‘mid’. Now, inside the canWePlace() function, we
+		 * are using a loop that runs for N times.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+
+		int n = stalls.length;
+
+		Arrays.sort(stalls);
+
+		int low = 1, high = stalls[n - 1] - stalls[0];
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			if (cowPlacementPossible(stalls, mid, k) == true) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return high;
+	}
+
+
+	private static int countStudentsAgainstBooks(List<Integer> bookList, int pages) {
+
+		int n = bookList.size();
+		int students = 1;
+		int totalPages = 0;
+
+		for (int i=0; i<n; i++) {
+			if (totalPages + bookList.get(i) <= pages) {
+				totalPages += bookList.get(i);
+			} else {
+				students++;
+				totalPages = bookList.get(i);
+			}
+		}
+
+		return students;
+	}
+
+	public static int allocateMinimumNumberOfPages(List<Integer> bookList, int numberOfBooks, int numberOfStudents) {
+
+		/*
+		 * Time Complexity: O(N * log(sum(arr[])-max(arr[])+1)), where N = size of the
+		 * array, sum(arr[]) = sum of all array elements, max(arr[]) = maximum of all
+		 * array elements.
+		 * 
+		 * Reason: We are applying binary search on [max(arr[]), sum(arr[])]. Inside the
+		 * loop, we are calling the countStudents() function for the value of ‘mid’.
+		 * Now, inside the countStudents() function, we are using a loop that runs for N
+		 * times.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+
+		if (numberOfStudents > numberOfBooks)
+			return -1;
+
+		int low = Collections.max(bookList);
+		int high = bookList.stream().mapToInt(Integer::intValue).sum();
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int students = countStudentsAgainstBooks(bookList, mid);
+			if (students > numberOfStudents) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	
+	private static int countArrayDivisions(int[] arr, int div) {
+
+		int n = arr.length;
+		int sum = 0;
+		int parts = 1;
+
+		for (int i = 0; i < n; i++) {
+			if (sum + arr[i] > div) {
+				parts++;
+				sum = arr[i];
+			} else {
+				sum += arr[i];
+			}
+		}
+
+		return parts;
+	}
+
+	public static int splitArrayLargestSumMinimized(int[] arr, int k) {
+
+		/*
+		 * Time Complexity: O(N * log(sum(arr[])-max(arr[])+1)), where N = size of the
+		 * array, sum(arr[]) = sum of all array elements, max(arr[]) = maximum of all
+		 * array elements.
+		 * 
+		 * Reason: We are applying binary search on [max(arr[]), sum(arr[])]. Inside the
+		 * loop, we are calling the countPartitions() function for the value of ‘mid’.
+		 * Now, inside the countPartitions() function, we are using a loop that runs for
+		 * N times.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+		
+		int n = arr.length;
+
+		if (k > n)
+			return -1;
+
+		int low = Integer.MIN_VALUE;
+		int high = 0;
+
+		for (int i = 0; i < n; i++) {
+			low = Math.max(low, arr[i]);
+			high += arr[i];
+
+		}
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+
+			int countDiv = countArrayDivisions(arr, mid);
+
+			if (countDiv > k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	private static int getBoardAssignment(ArrayList<Integer> boards, int assigned) {
+
+		int painters = 1;
+		int boardsPainter = 0;
+
+		for (Integer i : boards) {
+			if (boardsPainter + i > assigned) {
+				painters += 1;
+				boardsPainter = i;
+
+			} else {
+				boardsPainter += i;
+			}
+
+		}
+
+		return painters;
+	}
+
+	public static int paintersPartition(ArrayList<Integer> boards, int k) {
+
+		/*
+		 * Time Complexity: O(N * log(sum(arr[])-max(arr[])+1)), where N = size of the
+		 * array, sum(arr[]) = sum of all array elements, max(arr[]) = maximum of all
+		 * array elements.
+		 * 
+		 * Reason: We are applying binary search on [max(arr[]), sum(arr[])]. Inside the
+		 * loop, we are calling the countPainters() function for the value of ‘mid’.
+		 * Now, inside the countPainters() function, we are using a loop that runs for N
+		 * times.
+		 * 
+		 * Space Complexity: O(1) as we are not using any extra space to solve this
+		 * problem.
+		 */
+		
+		int n = boards.size();
+
+		int low = Collections.max(boards);
+		int high = boards.stream().mapToInt(Integer::intValue).sum();
+
+		while (low <= high) {
+			int mid = low + (high - low) / 2;
+			int painters = getBoardAssignment(boards, mid);
+
+			if (painters > k) {
+				low = mid + 1;
+			} else {
+				high = mid - 1;
+			}
+
+		}
+
+		return low;
+	}
+
+	
+	public static double minimizeMaximumDistanceBetweenGasStations(int[] arr, int k) {
+
+		int n = arr.length;
+		int[] howMany = new int[n - 1];
+		
+		for(int stn = 0; stn<k; stn++)
+		{
+			double maxSection = -1;
+			int maxIndex = -1;
+			
+			for(int i=0; i<n-1; i++)
+			{
+				double diff = arr[i + 1] - arr[i];
+				double secLength = diff / (double)(howMany[i] + 1);
+				if(secLength > maxSection)
+				{
+					maxSection = secLength;
+					maxIndex = i;
+				}
+			}
+			howMany[maxIndex]++;
+		}
+		
+		double maxAns = -1;
+		for(int i=0; i<n-1; i++)
+		{
+			double diff = arr[i + 1] - arr[i];
+			double sectionLength = diff / (double)(howMany[i] + 1);
+			maxAns = Math.max(maxAns, sectionLength);
+		}
+		
+		return maxAns;
+	}
+
+	
+
+	
+
+	
+	
+	
+	
+}

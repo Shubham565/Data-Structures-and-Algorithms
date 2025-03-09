@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;Recursion&apos; to &apos;com.bhambey.Recursion&apos;&#x0A;- Original project: &apos;Educative&apos;&#x0A;- Original element: &apos;Educative/src/Recursion&apos;&#x0A;- Renamed element: &apos;Educative/src/com.bhambey.Recursion&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;Recursion&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;Recursion" name="com.bhambey.Recursion" qualified="false" references="true" stamp="1718605242690" textual="false" version="1.0"/>
+</session>

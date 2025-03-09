@@ -1,0 +1,11 @@
+package com.bhambey.strings;
+
+public class SortCharactersByFrequency {
+
+	public static void main(String[] args) {
+
+		String s = "tree";
+		System.out.println("Characters sorted by frequency: " 
+							+ StringsUtil.sortCharactersByFrequency(s));
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;STRIVER&apos;&#x0A;- Original project: &apos;STRIVER&apos;&#x0A;- Original elements:&#x0A;     com.bhambey.strings.MinimumSwapsToMakePalindrome.java&#x0A;     com.bhambey.strings.MSOA.java&#x0A;     com.bhambey.strings.MSOA2.java&#x0A;     com.bhambey.strings.RemoveDuplicatesLexGreater.java" description="Delete elements" element1="/src&lt;com.bhambey.strings{RemoveDuplicatesLexGreater.java" element2="/src&lt;com.bhambey.strings{MinimumSwapsToMakePalindrome.java" element3="/src&lt;com.bhambey.strings{MSOA.java" element4="/src&lt;com.bhambey.strings{MSOA2.java" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1741092787259" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,11 @@
+package com.bhambey.strings;
+
+public class LongestCommonPrefix {
+
+	public static void main(String[] args) {
+
+		
+		
+	}
+
+}

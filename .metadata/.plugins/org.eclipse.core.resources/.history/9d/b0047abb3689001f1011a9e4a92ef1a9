@@ -1,0 +1,17 @@
+package com.bhambey.concurrency;
+
+public class ThreadUnsafeCounter {
+
+	int counter = 0;
+	
+	public void increment()
+	{
+		counter++;
+	}
+	
+	public void decrement()
+	{
+		counter--;
+	}
+	
+}

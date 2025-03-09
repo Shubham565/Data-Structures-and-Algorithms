@@ -1,0 +1,91 @@
+package com.bhambey.strings;
+
+import java.util.*;
+
+public class StringsUtil {
+
+	public static String removeOutermostParenthesis(String sample) {
+
+		Stack<Character> stack = new Stack<>();
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < sample.length(); i++) {
+			if (sample.charAt(i) == '(') {
+				if (stack.size() > 0) {
+					sb.append(sample.charAt(i));
+				}
+				stack.push(sample.charAt(i));
+			} else {
+				stack.pop();
+				if (stack.size() > 0) {
+					sb.append(sample.charAt(i));
+				}
+			}
+		}
+
+		return sb.toString();
+	}
+
+	public static String reverseTheString(String s) {
+
+		int left = 0, right = s.length() - 1;
+		String temp = "", ans = "";
+
+		while (left <= right) {
+			char ch = s.charAt(left);
+			if (ch != ' ') {
+				temp += ch;
+			} else if (ch == ' ') {
+				if (!ans.equals("")) {
+					ans = temp + " " + ans;
+				} else {
+					ans = temp;
+				}
+				temp = "";
+			}
+			left++;
+		}
+		if (!temp.equals("")) {
+			if (!ans.equals("")) {
+				ans = temp + " " + ans;
+			} else {
+				ans = temp;
+			}
+		}
+
+		return ans;
+	}
+
+	
+	public static String largestOddNUmberInTheString(String s) {
+
+		int n = s.length();
+		for (int i = n - 1; i >= 0; i--) {
+			if (Character.getNumericValue(s.charAt(i)) % 2 != 0) {
+				return s.substring(0, i + 1);
+			}
+		}
+		return "";
+	}
+
+	
+	public static String longestCommonPrefix(String[] arr) {
+
+		if (arr.length == 0)
+			return "";
+
+		String prefix = arr[0];
+		for (int i = 0; i < arr.length; i++) {
+			while (arr[i].indexOf(prefix) != 0) {
+				prefix = prefix.substring(0, prefix.length() - 1);
+				if (prefix.isEmpty())
+					return "";
+			}
+		}
+
+		return prefix;
+	}
+
+	
+	
+}

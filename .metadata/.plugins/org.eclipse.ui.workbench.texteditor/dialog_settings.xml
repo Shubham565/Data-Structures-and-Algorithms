@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value=""/>
+		<list key="findhistory">
+			<item value="int n = 7;&#x0A;    int key = 13;&#x0A;    int[] v = {3,4,13,13,13,20,40};&#x0A;&#x0A;    // returning the last occurrence index if the element is present otherwise -1&#x0A;    System.out.println(solve(n, key, v));"/>
+			<item value="package com.bhambey.arrays;"/>
+			<item value="package com.bhambey.Recursion;"/>
+			<item value="package com.bhambey.patterns;"/>
+			<item value="salar"/>
+			<item value="tolist"/>
+			<item value="userJson"/>
+			<item value="s"/>
+			<item value="for"/>
+			<item value="employeeList"/>
+			<item value="int k"/>
+			<item value="package com.bhambey.book.binarytrees;"/>
+			<item value="l;argest"/>
+			<item value="largest"/>
+		</list>
+		<list key="replacehistory">
+			<item value="list"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1164"/>
+		<item key="DIALOG_Y_ORIGIN" value="543"/>
+		<item key="DIALOG_WIDTH" value="336"/>
+		<item key="DIALOG_HEIGHT" value="402"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.bhambey.recursion.backtracking.Sample&apos; to &apos;SubsequencesBitManipulation&apos;&#x0A;- Original project: &apos;GrillingOnBookCode&apos;&#x0A;- Original element: &apos;com.bhambey.recursion.backtracking.Sample&apos;&#x0A;- Renamed element: &apos;com.bhambey.recursion.backtracking.SubsequencesBitManipulation&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Sample&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.bhambey.recursion.backtracking{Sample.java[Sample" matchStrategy="1" name="SubsequencesBitManipulation" qualified="false" references="true" similarDeclarations="false" stamp="1662218891178" textual="false" version="1.0"/>
+</session>

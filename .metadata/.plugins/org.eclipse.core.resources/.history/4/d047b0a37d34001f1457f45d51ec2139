@@ -1,0 +1,198 @@
+package com.bhambey.arrays;
+
+import java.util.ArrayList;
+
+public class ArrayUtil {
+
+	public static int largestElement(int[] arr) {
+
+		int max = arr[0];
+
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+			}
+
+		}
+
+		return max;
+
+	}
+
+	public static int SecondLargest(int[] arr) {
+
+		if (arr.length < 2) {
+			return -1;
+		}
+
+		int large = Integer.MIN_VALUE;
+		int second_large = Integer.MIN_VALUE;
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] > large) {
+				second_large = large;
+				large = arr[i];
+			} else if (arr[i] > second_large && arr[i] != large) {
+				second_large = arr[i];
+			}
+		}
+
+		return second_large;
+	}
+
+	public static int secondSmallestElement(int[] arr) {
+
+		if (arr.length < 2) {
+			return -1;
+		}
+
+		int small = Integer.MAX_VALUE;
+		int second_small = Integer.MAX_VALUE;
+
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] < small) {
+				second_small = small;
+				small = arr[i];
+			}
+
+			else if (arr[i] < second_small && arr[i] != small) {
+				second_small = arr[i];
+			}
+
+		}
+
+		return second_small;
+	}
+
+	public static boolean checkSortedArray(int[] arr) {
+
+		for (int i = 0; i < arr.length - 1; i++) {
+			if (arr[i] > arr[i + 1]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public static int removeDuplicatesSortedArray(int[] arr) {
+
+		int i = 0;
+		for (int j = 1; j < arr.length; j++) {
+			if (arr[i] != arr[j]) {
+				i++;
+				arr[i] = arr[j];
+			}
+		}
+
+		return i + 1;
+	}
+
+	public static void leftRotateByOnePosition(int[] arr, int n) {
+
+		int temp = arr[0];
+
+		for (int i = 0; i < arr.length - 1; i++) {
+			arr[i] = arr[i + 1];
+		}
+
+		arr[arr.length - 1] = temp;
+
+	}
+
+	public static void RotateKRight(int[] arr, int n, int k) {
+
+		int[] narr = new int[k];
+		for (int i = 0; i < k; i++) {
+			narr[i] = arr[i];
+		}
+
+		for (int i = 0; i <= n - k - 1; i++) {
+			arr[i] = arr[i + 1];
+		}
+
+		int x = 0;
+
+		for (int i = k; i > 0; i--) {
+			arr[n - i] = narr[x];
+			x++;
+		}
+
+	}
+
+	public static int[] moveZerosToEnd(int n, int[] arr) {
+
+		int j = -1;
+		// place the pointer j:
+		for (int i = 0; i < n; i++) {
+			if (arr[i] == 0) {
+				j = i;
+				break;
+			}
+		}
+
+		// no non-zero elements:
+		if (j == -1)
+			return arr;
+
+		// Move the pointers i and j
+		// and swap accordingly:
+		for (int i = j + 1; i < n; i++) {
+			if (arr[i] != 0) {
+				// swap a[i] & a[j]:
+				int tmp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = tmp;
+				j++;
+			}
+		}
+
+		return arr;
+
+	}
+
+	public static ArrayList<Integer> FindUnion(int[] arr1, int[] arr2, int n, int m) {
+
+		int i = 0, j = 0;
+		ArrayList<Integer> union = new ArrayList<>();
+
+		while (i < n && j < m) {
+			if (arr1[i] <= arr2[j]) {
+				if (union.size() == 0 || union.get(union.size() - 1) != arr1[i]) {
+					union.add(arr1[i]);
+					i++;
+				}
+			} else {
+				if (union.size() == 0 || union.get(union.size() - 1) != arr2[j]) {
+					union.add(arr2[j]);
+					j++;
+				}
+			}
+		}
+
+		while (i < n) {
+			if (union.get(union.size() - 1) != arr1[i]) {
+				union.add(arr1[i]);
+				i++;
+			}
+
+		}
+
+		while (j < m) {
+			if (union.get(union.size() - 1) != arr2[j]) {
+				union.add(arr2[j]);
+				j++;
+			}
+
+		}
+
+		return union;
+	}
+
+	public static int missingNumber(int[] a, int n) {
+
+		
+		
+	
+	}
+
+}

@@ -1,0 +1,53 @@
+package com.bhambey.concurrency;
+
+import java.util.*;
+
+public class DemoThreadUnsafe {
+
+	static Random random = new Random(System.currentTimeMillis());
+	
+	public static void main(String[] args) {
+		
+		ThreadUnsafeCounter badCounter = new ThreadUnsafeCounter();
+		
+		Thread t1 = new Thread(new Runnable() {
+			public void run() {
+				for(int i=0; i<100; i++)
+				{
+					badCounter.increment();
+					DemoThreadUnsafe.sleepRandomlyForLessThanTenSeconds();
+				}
+			}
+		});
+		
+		Thread t2 = new Thread(new Runnable() {
+			public void run() {
+				for(int i=0; i<100; i++)
+				{
+					badCounter.decrement();
+					DemoThreadUnsafe.sleepRandomlyForLessThanTenSeconds();
+				}
+			}
+		});
+		
+		t1.start();
+		t2.start();
+		
+		t1.join();
+		t2.join();
+		
+		badCounter.printFinalCounterValue();
+		
+	}
+	
+	public static void sleepRandomlyForLessThanTenSeconds () {
+		try {
+			Thread.sleep(random.nextInt(10));
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+}

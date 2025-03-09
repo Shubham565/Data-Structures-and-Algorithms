@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;Pattern14.java&apos; to &apos;GrillingOnCode/src/com.bhambey.patterns&apos;&#x0A;- Original project: &apos;GrillingOnCode&apos;&#x0A;- Destination element: &apos;GrillingOnCode/src/com.bhambey.patterns&apos;&#x0A;- Original element: &apos;com.bhambey.patterns.Pattern14.java&apos;" description="Copy compilation unit" destination="/src&lt;com.bhambey.patterns" element1="/src&lt;com.bhambey.patterns{Pattern14.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1696364867514" units="1" version="1.0"/>
+</session>

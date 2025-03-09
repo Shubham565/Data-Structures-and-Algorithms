@@ -1,0 +1,33 @@
+package com.bhambey.book.binarytrees;
+
+public class FlattenBTToLL {
+
+	public static void main(String[] args) {
+
+		BinaryTree a = new BinaryTree();
+
+		Node root = a.createNewNode(8);
+		root.left = a.createNewNode(7);
+		root.right = a.createNewNode(5);
+		root.left.left = a.createNewNode(2);
+		root.left.right = a.createNewNode(6);
+		root.left.right.left = a.createNewNode(3);
+		root.left.right.right = a.createNewNode(11);
+		root.right.right = a.createNewNode(9);
+		root.right.right.left = a.createNewNode(4);
+
+		// a.flattenToLL(root);
+		a.flattenToLLIterative(root);
+
+		printList(root);
+
+	}
+
+	public static void printList(Node root) {
+		while (root != null) {
+			System.out.print(root.data + " ");
+			root = root.right;
+		}
+	}
+
+}
