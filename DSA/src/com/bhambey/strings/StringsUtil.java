@@ -247,4 +247,73 @@ public class StringsUtil {
 		return countAtMostK(s, k) - countAtMostK(s, k - 1);
 	}
 
+	
+	private static int expandFromMiddle(String s, int left, int right) {
+
+		while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+			left--;
+			right++;
+		}
+
+		return right - left - 1;
+	}
+
+	public static String longestPalindromicSubstring(String s) {
+
+		if (s.length() < 1 || s == null)
+			return "";
+
+		int start = 0, end = 0;
+
+		for (int i = 0; i < s.length(); i++) {
+			int len1 = expandFromMiddle(s, i, i);
+			int len2 = expandFromMiddle(s, i, i + 1);
+			int len = Math.max(len1, len2);
+
+			if (len > end - start) {
+				start = i - (len - 1) / 2;
+				end = i + len / 2;
+			}
+		}
+
+		return s.substring(start, end + 1);
+	}
+
+	
+	private static int getBeauty(int[] freq) {
+
+		int max = Integer.MIN_VALUE, min = Integer.MAX_VALUE;
+
+		for (int f : freq) {
+			if (f > 0) {
+				max = Math.max(max, f);
+				min = Math.min(min, f);
+			}
+		}
+
+		return max - min;
+	}
+	
+	public static int beautyOfSubstrings(String s) {
+
+		int n = s.length();
+		int totalBeauty = 0;
+
+		for (int i = 0; i < n; i++) {
+			int[] freq = new int[26];
+
+			for (int j = i; j < n; j++) {
+				freq[s.charAt(j) - 'a']++;
+				totalBeauty += getBeauty(freq);
+			}
+		}
+
+		return totalBeauty;
+	}
+
+
+
+	
+	
+	
 }
