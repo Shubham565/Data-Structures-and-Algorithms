@@ -311,6 +311,21 @@ public class StringsUtil {
 		return totalBeauty;
 	}
 
+	
+	public static String reverseWordsInString(String s) {
+
+		String[] wordsInOrder = s.trim().split("\\s+");
+		StringBuilder result = new StringBuilder();
+
+		for (int i = wordsInOrder.length - 1; i >= 0; i--) {
+			result.append(wordsInOrder[i]);
+			if (i > 0)
+				result.append(" ");
+		}
+
+		return result.toString();
+	}
+
 
 
 	
