@@ -12,6 +12,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/Users/shubhambhambey/Desktop/Data-Structures-and-Algorithms/DSA"/>
 			<item value="/Users/shubhambhambey/Downloads/SRP"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

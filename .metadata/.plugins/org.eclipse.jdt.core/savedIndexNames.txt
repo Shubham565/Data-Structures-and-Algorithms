@@ -1,13 +1,4 @@
 INDEX VERSION 1.131+/Users/shubhambhambey/Desktop/Data-Structures-and-Algorithms/.metadata/.plugins/org.eclipse.jdt.core
-3847672508.index
-2083008706.index
-928093762.index
-705011788.index
-2073249476.index
-1865797976.index
-3367307075.index
 1053506297.index
-3568047156.index
-2484160085.index
-268260600.index
-2249312411.index
+291662228.index
+1865797976.index
